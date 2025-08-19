@@ -31,10 +31,9 @@ const contactSchema = new mongoose.Schema(
       enum: ["Architect", "Trade Partner"],
     },
 
-    ProductType: {
+    ProductEnquire: {
       type: String,
       required: [true, "Service selection is required"],
-      enum: ["Laminates", "Soffitto", "Baffle"],
     },
 
     companyName: {
