@@ -602,3 +602,11 @@ button, select {
   font-size: 16px !important;
   color: #333 !important;
 }
+
+
+  .input100.invalid {
+    color: red !important;
+  }
+  .input100.valid {
+    color: rgb(0, 0, 0) !important;
+  }

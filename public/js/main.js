@@ -66,3 +66,48 @@
 
 
 })(jQuery);
+
+
+
+
+  const nameInput = document.querySelector("input[name='name']");
+  const emailInput = document.querySelector("input[name='email']");
+  const phoneInput = document.querySelector("input[name='number']");
+  const firmInput = document.querySelector("input[name='company_name']");
+
+  // Validation functions
+  function validateName(input) {
+    const regex = /^[A-Za-z\s]+$/; // only letters & spaces
+    return regex.test(input.value.trim());
+  }
+
+  function validateEmail(input) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // simple email regex
+    return regex.test(input.value.trim());
+  }
+
+ function validatePhone(input) {
+  // remove everything except digits
+  input.value = input.value.replace(/[^0-9]/g, "");
+
+  // regex: only digits, exactly 10
+  const regex = /^[0-9]{10}$/;
+  return regex.test(input.value.trim());
+}
+
+  function setValidation(input, isValid) {
+    if (isValid) {
+      input.classList.add("valid");
+      input.classList.remove("invalid");
+    } else {
+      input.classList.add("invalid");
+      input.classList.remove("valid");
+    }
+  }
+
+  // Real-time validation events
+  nameInput.addEventListener("input", () => setValidation(nameInput, validateName(nameInput)));
+  firmInput.addEventListener("input", () => setValidation(firmInput, validateName(firmInput)));
+  emailInput.addEventListener("input", () => setValidation(emailInput, validateEmail(emailInput)));
+  phoneInput.addEventListener("input", () => setValidation(phoneInput, validatePhone(phoneInput)));
+
