@@ -39,7 +39,6 @@ const contactSchema = new mongoose.Schema(
     UserType: {
       type: String,
       required: [true, "Service selection is required"],
-      enum: ["Architect/Interior designer", "Dealer", "Distributor", "OEM"],
     },
 
     ProductEnquire: {
