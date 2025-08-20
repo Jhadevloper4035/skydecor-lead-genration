@@ -954,6 +954,7 @@ const stateRepresentativeMap = {
   Kerala: "Anubhav Mishra",
   "Tamil Nadu": "Anubhav Mishra",
   "Dadra and Nagar Haveli (UT)": "Anubhav Mishra",
+  "Puducherry (UT)" : "Anubhav Mishra",
 
   // Baljinder Singh
   Haryana: "Baljinder Singh",
