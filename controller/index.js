@@ -19,7 +19,6 @@ module.exports.submitFormEvent = async (req, res) => {
     // Validation
     if (
       !name ||
-      !email ||
       !number ||
       !userType ||
       !productType ||
@@ -77,7 +76,6 @@ module.exports.submitFormShowroom = async (req, res) => {
     // Validation
     if (
       !name ||
-      !email ||
       !number ||
       !userType ||
       !productType ||
