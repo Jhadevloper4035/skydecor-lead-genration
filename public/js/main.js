@@ -924,6 +924,13 @@ const stateRepresentativeMap = {
   Assam: "Nishant Mitra",
   Jharkhand: "Nishant Mitra",
   Bihar: "Nishant Mitra",
+  "Arunachal Pradesh": "Nishant Mitra",
+  Manipur: "Nishant Mitra",
+  Meghalaya: "Nishant Mitra",
+  Mizoram: "Nishant Mitra",
+  Nagaland: "Nishant Mitra",
+  Tripura: "Nishant Mitra",
+  Sikkim: "Nishant Mitra",
 
   // Nipu Sinha
   "Uttar Pradesh": "Nipu Sinha",
@@ -933,22 +940,27 @@ const stateRepresentativeMap = {
 
   // Sanjay Banerjee
   Maharashtra: "Sanjay Banerjee",
+  "Lakshadweep (UT)": "Sanjay Banerjee",
+  "Daman and Diu (UT)": "Sanjay Banerjee",
+  "Goa" : "Sanjay Banerjee",
 
   // Rahul Yoge
   "Madhya Pradesh": "Rahul Yoge",
+  Chhattisgarh: "Rahul Yoge",
 
   // Anubhav Mishra
   Gujarat: "Anubhav Mishra",
   Karnataka: "Anubhav Mishra", // Bangalore → Karnataka
   Kerala: "Anubhav Mishra",
   "Tamil Nadu": "Anubhav Mishra",
+  "Dadra and Nagar Haveli (UT)": "Anubhav Mishra",
 
   // Baljinder Singh
   Haryana: "Baljinder Singh",
   Punjab: "Baljinder Singh",
   "Jammu and Kashmir": "Baljinder Singh",
   "Himachal Pradesh": "Baljinder Singh",
-  Chandigarh: "Baljinder Singh", // UT
+  "Chandigarh (UT)": "Baljinder Singh",
 };
 
 stateDropdown.addEventListener("change", function () {
