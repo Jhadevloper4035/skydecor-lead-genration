@@ -43,7 +43,7 @@ const contactSchema = new mongoose.Schema(
     },
 
     ProductEnquire: {
-      type: String,
+      type: [String],
       required: [true, "Service selection is required"],
     },
 

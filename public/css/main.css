@@ -617,3 +617,10 @@ button, select {
     margin-top: 4px;
     display: none;
   }
+   
+
+
+  .select2-container--default .select2-selection--multiple {
+    border: none;
+    margin-left: 5px ;
+}

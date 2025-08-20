@@ -5,15 +5,30 @@ const { protect } = require("../middleware/jwt.js");
 const express = require("express");
 const XLSX = require("xlsx");
 
+
 route.get("/dashboard", protect, async (req, res) => {
   try {
     const leadData = await Contact.find();
-    res.render("dashboard", { title: "Home page", leads: leadData });
+
+    // Convert ProductEnquire array → string
+    const formattedLeads = leadData.map(lead => {
+      const obj = lead.toObject();
+      obj.ProductEnquire = Array.isArray(obj.ProductEnquire) && obj.ProductEnquire.length > 0
+        ? obj.ProductEnquire.join(", ")
+        : ""; // empty string if no product enquire
+      return obj;
+    });
+
+    res.render("dashboard", { title: "Home page", leads: formattedLeads });
   } catch (error) {
     console.error("Error fetching leads:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
+
+
+
 
 route.get("/download", protect, async (req, res) => {
   try {

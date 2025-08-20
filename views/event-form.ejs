@@ -64,7 +64,7 @@
 
         <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
           <span class="label-input100">Email</span>
-          <input class="input100" type="text" name="email" placeholder="Enter your email" >
+          <input class="input100" type="text" name="email" placeholder="Enter your email">
           <div class="error-message" id="email-error"></div>
           <span class="focus-input100"></span>
         </div>
@@ -95,18 +95,24 @@
 
 
         <div class="wrap-input100 input100-select">
-          <span class="label-input100">Product Type</span>
+          <span class="label-input100">Product Enquire</span>
           <div>
-            <select class="selection-2" name="productType" required>
-              <option>Laminates(0.8mm, 1mm+) </option>
-              <option>PVC</option>
-              <option>Acrylish</option>
-              <option>Soffitto</option>
-              <option>MDF</option>
+            <select class="selection-2 selection-21" name="productType[]" multiple required
+              style="width:100%; height:auto; min-height:120px;">
+              <option value="Laminates">Laminates (0.8mm, 1mm+)</option>
+              <option value="PVC">PVC</option>
+              <option value="Acrylish">Acrylish</option>
+              <option value="Soffitto">Soffitto</option>
+              <option value="MDF">MDF</option>
             </select>
           </div>
           <span class="focus-input100"></span>
         </div>
+
+
+
+
+
 
         <div class="wrap-input100 validate-input" data-validate=" Company Name is required">
           <span class="label-input100">Firm Name </span>
@@ -197,6 +203,15 @@
   <!--===============================================================================================-->
   <script src="/js/main.js"></script>
 
+
+  <script>
+    $(document).ready(function () {
+      $(".selection-21").select2({
+        placeholder: "Select products",
+        allowClear: true
+      });
+    });
+  </script>
 
 
 
