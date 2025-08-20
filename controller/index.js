@@ -46,7 +46,7 @@ module.exports.submitFormEvent = async (req, res) => {
       city: city,
       representative,
       leadType: "event",
-      place: "Metacia 2025",
+      place: "MATECIA 2025",
     });
 
     res.redirect("/form/thankyou");

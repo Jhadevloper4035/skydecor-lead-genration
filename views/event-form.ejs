@@ -52,7 +52,7 @@
         <span class="contact100-form-title" style="text-transform: uppercase;">
           Get in Touch with SkyDecor
         </span>
-        
+
 
         <div class="wrap-input100 validate-input" data-validate="Name is required">
           <span class="label-input100">Full Name </span>
@@ -77,8 +77,11 @@
           <span class="label-input100">User Type</span>
           <div>
             <select class="selection-2" name="userType" required>
-              <option>Architect</option>
-              <option>Trade Partner</option>
+              <option value="">-- Select user --</option>
+              <option>Architect/Interior designer</option>
+              <option>Dealer</option>
+              <option>Distributor</option>
+              <option>OEM</option>
             </select>
           </div>
           <span class="focus-input100"></span>
@@ -86,13 +89,14 @@
 
 
         <div class="wrap-input100 input100-select">
-          <span class="label-input100">Product Type</span>
+          <span class="label-input100">Product Enquire </span>
           <div>
             <select class="selection-2" name="productType" required>
+              <option value="">-- Select product --</option>
               <option>Laminates(0.8mm, 1mm+) </option>
               <option>PVC</option>
               <option>Acrylish</option>
-              <option>Soffitto</option> 
+              <option>Soffitto</option>
             </select>
           </div>
           <span class="focus-input100"></span>
@@ -132,7 +136,7 @@
 
         <div class="wrap-input100 validate-input" data-validate="Company state is required">
           <span class="label-input100">Representative </span>
-          <input class="input100" type="text" name="representative" placeholder="Representative name" required>
+          <input class="input100" type="text" name="representative" placeholder="Representative name" readonly required>
           <span class="focus-input100"></span>
         </div>
 
@@ -995,7 +999,45 @@
       stateDropdown.appendChild(option);
     });
 
-    // When state is selected → load cities
+    const stateRepresentativeMap = {
+      // Krishnadeep J
+      "Andhra Pradesh": "Krishnadeep J",
+      "Telangana": "Krishnadeep J",
+
+      // Nishant Mitra
+      "West Bengal": "Nishant Mitra",
+      "Odisha": "Nishant Mitra",
+      "Assam": "Nishant Mitra",
+      "Jharkhand": "Nishant Mitra",
+      "Bihar": "Nishant Mitra",
+
+      // Nipu Sinha
+      "Uttar Pradesh": "Nipu Sinha",
+      "Uttarakhand": "Nipu Sinha",
+      "Rajasthan": "Nipu Sinha",
+      "Delhi (NCT)": "Nipu Sinha",
+
+      // Sanjay Banerjee
+      "Maharashtra": "Sanjay Banerjee",
+
+      // Rahul Yoge
+      "Madhya Pradesh": "Rahul Yoge",
+
+      // Anubhav Mishra
+      "Gujarat": "Anubhav Mishra",
+      "Karnataka": "Anubhav Mishra",   // Bangalore → Karnataka
+      "Kerala": "Anubhav Mishra",
+      "Tamil Nadu": "Anubhav Mishra",
+
+      // Baljinder Singh
+      "Haryana": "Baljinder Singh",
+      "Punjab": "Baljinder Singh",
+      "Jammu and Kashmir": "Baljinder Singh",
+      "Himachal Pradesh": "Baljinder Singh",
+      "Chandigarh": "Baljinder Singh"  // UT
+    };
+
+
     stateDropdown.addEventListener("change", function () {
       const selectedState = this.value;
       cityDropdown.innerHTML = '<option value="">-- Select City --</option>'; // reset
@@ -1008,9 +1050,14 @@
           cityDropdown.appendChild(option);
         });
       }
+
+      // Auto-fill Representative
+      const repField = document.querySelector('input[name="representative"]');
+      repField.value = stateRepresentativeMap[selectedState] || "Vikas Zadoo";
     });
 
   </script>
 
 </body>
+
 </html>

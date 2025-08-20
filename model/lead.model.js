@@ -9,6 +9,12 @@ const contactSchema = new mongoose.Schema(
       trim: true,
       minlength: [3, "Name must be at least 3 characters long"],
       maxlength: [50, "Name cannot exceed 50 characters"],
+      validate: {
+        validator: function (v) {
+          return /^[A-Za-z\s]+$/.test(v);
+        },
+        message: "Name can only contain alphabets and spaces",
+      },
     },
 
     email: {
@@ -22,13 +28,19 @@ const contactSchema = new mongoose.Schema(
     mobileNumber: {
       type: String,
       required: [true, "Mobile number is required"],
-      match: [/^\d{7,15}$/, "Mobile number must be between 7 and 15 digits"],
+      validate: {
+        validator: function (v) {
+          return /^\d{10}$/.test(v); // only 10 digits allowed
+        },
+        message:
+          "Mobile number must be exactly 10 digits and contain only numbers",
+      },
     },
 
     UserType: {
       type: String,
       required: [true, "Service selection is required"],
-      enum: ["Architect", "Trade Partner"],
+      enum: ["Architect/Interior designer", "Dealer", "Distributor", "OEM"],
     },
 
     ProductEnquire: {
