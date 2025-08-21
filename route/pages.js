@@ -16,4 +16,9 @@ route.get("/thankyou", (req, res) => {
   res.render("thankyou", { title: "Thank You | Skydecor" });
 });
 
+route.get("/already-submited", (req, res) => {
+  res.render("submited", { title: "Thank You | Skydecor" });
+});
+
+
 module.exports = route;

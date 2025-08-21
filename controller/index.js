@@ -1,6 +1,5 @@
 const Contact = require("../model/lead.model.js");
 
-
 module.exports.submitFormEvent = async (req, res) => {
   try {
     const {
@@ -14,7 +13,6 @@ module.exports.submitFormEvent = async (req, res) => {
       state,
       representative,
     } = req.body;
-
 
     // Validation
     if (
@@ -32,6 +30,11 @@ module.exports.submitFormEvent = async (req, res) => {
         .json({ message: "Invalid details. Please fill all required fields." });
     }
 
+    // ✅ Check if number already exists in DB
+    const existingLead = await Contact.findOne({ mobileNumber: number, leadType: "event" });
+    if (existingLead) {
+      return res.redirect("/already-submited"); // redirect if already exists
+    }
 
     // Save to DB
     await Contact.create({
@@ -57,7 +60,6 @@ module.exports.submitFormEvent = async (req, res) => {
   }
 };
 
-
 module.exports.submitFormShowroom = async (req, res) => {
   try {
     const {
@@ -71,7 +73,6 @@ module.exports.submitFormShowroom = async (req, res) => {
       state,
       representative,
     } = req.body;
-
 
     // Validation
     if (
@@ -89,7 +90,11 @@ module.exports.submitFormShowroom = async (req, res) => {
         .json({ message: "Invalid details. Please fill all required fields." });
     }
 
-
+    // ✅ Check if number already exists in DB
+    const existingLead = await Contact.findOne({ mobileNumber: number, leadType: "showroom" });
+    if (existingLead) {
+      return res.redirect("/already-submited"); // redirect if already exists
+    }
 
     // Save to DB
     await Contact.create({
