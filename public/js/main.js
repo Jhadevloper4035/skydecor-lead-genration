@@ -128,6 +128,27 @@ phoneInput.addEventListener("input", () => validatePhone(phoneInput));
 firmInput.addEventListener("input", () => validateFirm(firmInput));
 
 const stateCityMap = {
+  "Andaman and Nicobar Islands (UT)": [
+    "Port Blair",
+    "Bambooflat",
+    "Garacharma",
+    "Wimberlygunj",
+    "Hut Bay",
+    "Neil Island",
+    "Havelock Island",
+    "Car Nicobar",
+    "Campbell Bay",
+    "Kondul",
+    "Teressa",
+    "Katchal",
+    "Little Nicobar",
+    "Great Nicobar",
+    "Mayabunder",
+    "Diglipur",
+    "Rangat",
+    "Billiground",
+    "Pokadera",
+  ],
   "Andhra Pradesh": [
     "Anantapur",
     "Chittoor",
@@ -180,6 +201,7 @@ const stateCityMap = {
     "Dibrugarh",
     "Goalpara",
     "Golaghat",
+    "Guwahati",
     "Hailakandi",
     "Hojai",
     "Jorhat",
@@ -409,6 +431,7 @@ const stateCityMap = {
     "Seraikela-Kharsawan",
     "Simdega",
     "West Singhbhum",
+    "Jamshedpur",
   ],
   Karnataka: [
     "Bagalkot",
@@ -942,7 +965,7 @@ const stateRepresentativeMap = {
   Maharashtra: "Sanjay Banerjee",
   "Lakshadweep (UT)": "Sanjay Banerjee",
   "Daman and Diu (UT)": "Sanjay Banerjee",
-  "Goa" : "Sanjay Banerjee",
+  Goa: "Sanjay Banerjee",
 
   // Rahul Yoge
   "Madhya Pradesh": "Rahul Yoge",
@@ -954,7 +977,8 @@ const stateRepresentativeMap = {
   Kerala: "Anubhav Mishra",
   "Tamil Nadu": "Anubhav Mishra",
   "Dadra and Nagar Haveli (UT)": "Anubhav Mishra",
-  "Puducherry (UT)" : "Anubhav Mishra",
+  "Puducherry (UT)": "Anubhav Mishra",
+  "Andaman and Nicobar Islands (UT)": "Anubhav Mishra",
 
   // Baljinder Singh
   Haryana: "Baljinder Singh",
