@@ -33,7 +33,7 @@ module.exports.submitFormEvent = async (req, res) => {
     // ✅ Check if number already exists in DB
     const existingLead = await Contact.findOne({ mobileNumber: number, leadType: "event" });
     if (existingLead) {
-      return res.redirect("/already-submited"); // redirect if already exists
+      return res.redirect("form/already-submited"); // redirect if already exists
     }
 
     // Save to DB
@@ -93,7 +93,7 @@ module.exports.submitFormShowroom = async (req, res) => {
     // ✅ Check if number already exists in DB
     const existingLead = await Contact.findOne({ mobileNumber: number, leadType: "showroom" });
     if (existingLead) {
-      return res.redirect("/already-submited"); // redirect if already exists
+      return res.redirect("/form/already-submited"); // redirect if already exists
     }
 
     // Save to DB
