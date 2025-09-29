@@ -3,15 +3,12 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const { ConnectDB, closeDB } = require("./config/db.js");
-const port = process.env.PORT || 8000;
+
 
 const formRoute = require("./route/index.js");
 const pageRoute = require("./route/pages.js")
 const userRoute = require("./route/user.js")
 const adminRoute = require("./route/admin.js")
-
-
-
 
 const app = express();
 
@@ -44,6 +41,5 @@ process.on("SIGTERM", async () => {
   process.exit(0);
 });
 
-app.listen(port, () => {
-  console.log(`✅ Server is running on port: ${port}`);
-});
+
+module.exports = app

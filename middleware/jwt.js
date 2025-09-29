@@ -11,7 +11,7 @@ const protect = async (req, res, next) => {
   let token = req.cookies?.token;
 
   if (!token) {
-    return res.redirect("/login?error=Please login first");
+    return res.redirect("/form/login");
   }
 
   try {

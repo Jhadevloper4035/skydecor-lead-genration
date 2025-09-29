@@ -5,58 +5,51 @@
   <title>
     <%= title %>
   </title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!--===============================================================================================-->
   <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css" />
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css" />
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css" />
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css" />
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css" />
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css" />
   <!--===============================================================================================-->
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" type="text/css" href="/css/util.css">
-  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/util.css" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css" />
   <!--===============================================================================================-->
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="noindex, follow" />
 </head>
 
 <body>
-
-
   <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-center">
     <a href="/" class="mb-3 me-2 mb-md-0 text-decoration-none lh-1">
-      <img src="/imgs/logo.png" alt="Company Logo" style="height:60px;">
+      <img src="/imgs/logo.png" alt="Company Logo" style="height: 60px" />
     </a>
   </nav>
-
-
-
-
 
   <div class="container-contact100">
     <div class="wrap-contact100">
       <form class="contact100-form validate-form" action="/lead/showroom/contact-form-submit" method="POST">
-        <span class="contact100-form-title" style="text-transform: uppercase;">
+        <span class="contact100-form-title" style="text-transform: uppercase">
           Get in Touch with SkyDecor
         </span>
 
-
         <div class="wrap-input100 validate-input" data-validate="Name is required">
           <span class="label-input100">Full Name </span>
-          <input class="input100" type="text" name="name" placeholder="Enter your name " required>
+          <input class="input100" type="text" name="name" placeholder="Enter your name " required />
           <div class="error-message" id="name-error"></div>
 
           <span class="focus-input100"></span>
@@ -64,21 +57,17 @@
 
         <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
           <span class="label-input100">Email</span>
-          <input class="input100" type="text" name="email" placeholder="Enter your email">
+          <input class="input100" type="text" name="email" placeholder="Enter your email" />
           <div class="error-message" id="email-error"></div>
           <span class="focus-input100"></span>
         </div>
 
-
-
-
         <div class="wrap-input100 validate-input" data-validate="Mobile Number is required">
           <span class="label-input100">Mobile Number </span>
-          <input class="input100" type="text" name="number" placeholder="Enter your phone number" required>
+          <input class="input100" type="text" name="number" placeholder="Enter your phone number" required />
           <div class="error-message" id="phone-error"></div>
           <span class="focus-input100"></span>
         </div>
-
 
         <div class="wrap-input100 input100-select">
           <span class="label-input100">User Type</span>
@@ -89,40 +78,34 @@
               <option>Distributor</option>
               <option>OEM</option>
               <option>Contractor</option>
-              <option> End Customer</option>
+              <option>End Customer</option>
             </select>
           </div>
           <span class="focus-input100"></span>
         </div>
-
 
         <div class="wrap-input100 input100-select">
           <span class="label-input100">Product Enquire</span>
           <div>
             <select class="selection-2 selection-21" name="productType[]" multiple required
-              style="width:100%; height:auto; min-height:120px;">
+              style="width: 100%; height: auto; min-height: 120px">
               <option value="Laminates">Laminates (0.8mm, 1mm+)</option>
-              <option value="PVC">PVC</option>
+              <option value="FR Flexi Laminates">FR Flexi Laminates</option>
               <option value="Acrylish">Acrylish</option>
               <option value="Soffitto">Soffitto</option>
               <option value="MDF">MDF</option>
+              <option value="Skybond">Skybond</option>
             </select>
           </div>
           <span class="focus-input100"></span>
         </div>
 
-
-
-
-
-
         <div class="wrap-input100 validate-input" data-validate=" Company Name is required">
           <span class="label-input100">Firm Name </span>
-          <input class="input100" type="text" name="company_name" placeholder="Please enter your firm name" required>
+          <input class="input100" type="text" name="company_name" placeholder="Please enter your firm name" required />
           <div class="error-message" id="firm-error"></div>
           <span class="focus-input100"></span>
         </div>
-
 
         <!-- State Dropdown -->
         <div class="wrap-input100 input100-select">
@@ -135,7 +118,6 @@
           <span class="focus-input100"></span>
         </div>
 
-
         <!-- City Dropdown -->
         <div class="wrap-input100 input100-select">
           <span class="label-input100">City</span>
@@ -147,37 +129,27 @@
           <span class="focus-input100"></span>
         </div>
 
-
-
         <div class="wrap-input100 validate-input" data-validate="Company state is required">
           <span class="label-input100">Representative </span>
-          <input class="input100" type="text" name="representative" placeholder="Representative name" readonly required>
+          <input class="input100" type="text" name="representative" placeholder="Representative name" readonly
+            required />
           <span class="focus-input100"></span>
         </div>
-
 
         <div class="container-contact100-form-btn">
           <div class="wrap-contact100-form-btn">
             <div class="contact100-form-bgbtn"></div>
             <button class="contact100-form-btn">
-              <span> Submit <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i> </span>
+              <span>
+                Submit
+                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+              </span>
             </button>
           </div>
         </div>
-
-
-
       </form>
     </div>
   </div>
-
-
-
-
-
-
-
-
 
   <div id="dropDownSelect1"></div>
 
@@ -205,18 +177,14 @@
   <!--===============================================================================================-->
   <script src="/js/main.js"></script>
 
-
   <script>
     $(document).ready(function () {
       $(".selection-21").select2({
         placeholder: "Select products",
-        allowClear: true
+        allowClear: true,
       });
     });
   </script>
-
-
-
 </body>
 
 </html>
