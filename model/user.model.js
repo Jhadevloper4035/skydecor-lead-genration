@@ -8,7 +8,6 @@ const userSchema = mongoose.Schema(
     },
     accessType: {
       type: String,
-      default: "event",
     },
     password: {
       type: String,

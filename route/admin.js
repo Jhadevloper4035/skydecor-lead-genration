@@ -7,8 +7,8 @@ const XLSX = require("xlsx");
 
 route.get("/dashboard", protect, async (req, res) => {
   try {
+    const leadType = req.user.accessType;
 
-    const leadType  = req.user.accessType
     const leadData = await Contact.find({ leadType: leadType }) // filter
       .sort({ createdAt: -1 }); // sort latest first
 
@@ -32,7 +32,11 @@ route.get("/dashboard", protect, async (req, res) => {
 route.get("/download", protect, async (req, res) => {
   try {
     // Fetch all contacts as plain JS objects
-    const data = await Contact.find().lean();
+
+    const leadType = req.user.accessType;
+    const data = await Contact.find({ leadType: leadType }) // filter
+      .sort({ createdAt: -1 })
+      .lean();
 
     // Optional: remove MongoDB internal fields
     const cleanData = data.map(({ _id, __v, ...rest }) => rest);
