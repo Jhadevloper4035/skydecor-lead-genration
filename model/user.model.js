@@ -1,18 +1,23 @@
-const mongoose = require("mongoose") 
-const bcrypt = require("bcrypt")
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
-const userSchema = mongoose.Schema({
-
-    name : {
-        type : String , 
-        
+const userSchema = mongoose.Schema(
+  {
+    name: {
+      type: String,
     },
-    password : {
-        type : String 
-    }
-
-})
-
+    accessType: {
+      type: String,
+      default: "event",
+    },
+    password: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 // Hash password before saving
 userSchema.pre("save", async function (next) {
@@ -26,5 +31,4 @@ userSchema.methods.matchPassword = function (enteredPassword) {
   return bcrypt.compare(enteredPassword, this.password);
 };
 
-
-module.exports =  mongoose.model("User" , userSchema)
+module.exports = mongoose.model("User", userSchema);

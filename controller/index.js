@@ -108,7 +108,7 @@ module.exports.submitFormShowroom = async (req, res) => {
       city: city,
       representative,
       leadType: "showroom",
-      place: "Showroom",
+      place: "kirti nagar",
     });
 
     res.redirect("/form/thankyou");
