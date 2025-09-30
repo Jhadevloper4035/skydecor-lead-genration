@@ -3,17 +3,17 @@ const { generateToken } = require("../middleware/jwt.js");
 
 // Register
 exports.register = async (req, res) => {
-  const { name, password } = req.body;
+  const { name, password , accessType } = req.body;
   try {
     const userExists = await User.findOne({ name });
     if (userExists) {
       return res.redirect("/register?error=User already exists");
     }
 
-    const user = await User.create({ name, password });
+    const user = await User.create({ name, password , accessType });
     const token = generateToken(user._id);
 
-    // Store token in httpOnly cookie
+    // Store token in httpOnly cookie expire in 7 days 
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",

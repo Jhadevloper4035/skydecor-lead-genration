@@ -4,11 +4,10 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const { ConnectDB, closeDB } = require("./config/db.js");
 
-
 const formRoute = require("./route/index.js");
-const pageRoute = require("./route/pages.js")
-const userRoute = require("./route/user.js")
-const adminRoute = require("./route/admin.js")
+const pageRoute = require("./route/pages.js");
+const userRoute = require("./route/user.js");
+const adminRoute = require("./route/admin.js");
 
 const app = express();
 
@@ -17,18 +16,17 @@ ConnectDB();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser()); 
-
+app.use(cookieParser());
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
+
 app.use("/lead", formRoute);
 app.use("/form", pageRoute);
 app.use("/user", userRoute);
-app.use("/admin",adminRoute);
-
+app.use("/admin", adminRoute);
 
 // close db
 process.on("SIGINT", async () => {
@@ -41,5 +39,4 @@ process.on("SIGTERM", async () => {
   process.exit(0);
 });
 
-
-module.exports = app
+module.exports = app;

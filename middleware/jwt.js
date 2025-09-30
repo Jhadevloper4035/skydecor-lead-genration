@@ -20,7 +20,7 @@ const protect = async (req, res, next) => {
     
     next();
   } catch (error) {
-    return res.redirect("/login?error=Session expired, please login again");
+    return res.redirect("/form/login");
   }
 };
 
