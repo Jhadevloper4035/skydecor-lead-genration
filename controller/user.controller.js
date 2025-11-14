@@ -50,6 +50,6 @@ exports.login = async (req, res) => {
     }
 
   } catch (error) {
-    return res.redirect(`/login?error=${encodeURIComponent(error.message)}`);
+    return res.redirect(`/form/login`);
   }
 };

@@ -22,7 +22,7 @@ route.get("/dashboard", protect, async (req, res) => {
       return obj;
     });
 
-    res.render("dashboard", { title: "Home page", leads: formattedLeads });
+    res.render("dashboard", { title: "Home page", leads: formattedLeads , user : req.user });
   } catch (error) {
     console.error("Error fetching leads:", error);
     res.status(500).json({ message: "Internal server error" });

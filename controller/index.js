@@ -31,7 +31,10 @@ module.exports.submitFormEvent = async (req, res) => {
     }
 
     // ✅ Check if number already exists in DB
-    const existingLead = await Contact.findOne({ mobileNumber: number, leadType: "event" });
+    const existingLead = await Contact.findOne({
+      mobileNumber: number,
+      leadType: "event",
+    });
     if (existingLead) {
       return res.redirect("/form/already-submited"); // redirect if already exists
     }
@@ -48,7 +51,7 @@ module.exports.submitFormEvent = async (req, res) => {
       city: city,
       representative,
       leadType: "event",
-      place: "MATECIA 2025",
+      place: "FOAID 2025",
     });
 
     res.redirect("/form/thankyou");
@@ -91,7 +94,10 @@ module.exports.submitFormShowroom = async (req, res) => {
     }
 
     // ✅ Check if number already exists in DB
-    const existingLead = await Contact.findOne({ mobileNumber: number, leadType: "showroom" });
+    const existingLead = await Contact.findOne({
+      mobileNumber: number,
+      leadType: "showroom",
+    });
     if (existingLead) {
       return res.redirect("/form/already-submited"); // redirect if already exists
     }
