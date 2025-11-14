@@ -22,19 +22,63 @@ route.get("/dashboard", protect, async (req, res) => {
       return obj;
     });
 
-    res.render("dashboard", { title: "Home page", leads: formattedLeads , user : req.user });
+    res.render("dashboard", {
+      title: "Home page",
+      leads: formattedLeads,
+      user: req.user,
+    });
   } catch (error) {
     console.error("Error fetching leads:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
 
-route.get("/download", protect, async (req, res) => {
+route.get("/event/:place", protect, async (req, res) => {
+  try {
+    // Access check
+    if (req.user.accessType !== "event") {
+      return res.status(400).json({
+        message: "Invalid access",
+      });
+    }
+
+    const place = req.params.place;
+
+    // Fetch leads
+    const leadData = await Contact.find({ place })
+      .sort({ createdAt: -1 })
+      .lean(); // returns plain JS objects
+
+    // Convert ProductEnquire array → comma-separated string
+    const formattedLeads = leadData.map((lead) => {
+      return {
+        ...lead,
+        ProductEnquire:
+          Array.isArray(lead.ProductEnquire) && lead.ProductEnquire.length > 0
+            ? lead.ProductEnquire.join(", ")
+            : "",
+      };
+    });
+
+    // Render page
+    return res.render("adminDashboard/event", {
+      title: "Home page",
+      leads: formattedLeads,
+      user: req.user,
+      place,
+    });
+  } catch (error) {
+    console.error("Error fetching leads:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+route.get("/download/:place", protect, async (req, res) => {
   try {
     // Fetch all contacts as plain JS objects
-
+    const { place } = req.params;
     const leadType = req.user.accessType;
-    const data = await Contact.find({ leadType: leadType }) // filter
+    const data = await Contact.find({ leadType: leadType, place })
       .sort({ createdAt: -1 })
       .lean();
 
