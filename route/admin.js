@@ -1,7 +1,6 @@
 const route = require("express").Router();
-const Contact = require("../model/lead.model.js");
+const Lead = require("../model/lead.model.js");
 const { protect } = require("../middleware/jwt.js");
-
 const express = require("express");
 const XLSX = require("xlsx");
 
@@ -9,7 +8,7 @@ route.get("/dashboard", protect, async (req, res) => {
   try {
     const leadType = req.user.accessType;
 
-    const leadData = await Contact.find({ leadType: leadType }) // filter
+    const leadData = await Lead.find({ leadType: leadType }) // filter
       .sort({ createdAt: -1 }); // sort latest first
 
     // Convert ProductEnquire array → string
@@ -36,7 +35,7 @@ route.get("/dashboard", protect, async (req, res) => {
 route.get("/event/:place", protect, async (req, res) => {
   try {
     // Access check
-    if (req.user.accessType !== "event") {
+    if (req.user.accessType === "showroom") {
       return res.status(400).json({
         message: "Invalid access",
       });
@@ -45,9 +44,9 @@ route.get("/event/:place", protect, async (req, res) => {
     const place = req.params.place;
 
     // Fetch leads
-    const leadData = await Contact.find({ place })
+    const leadData = await Lead.find({ leadType: "event", place })
       .sort({ createdAt: -1 })
-      .lean(); // returns plain JS objects
+      .lean();
 
     // Convert ProductEnquire array → comma-separated string
     const formattedLeads = leadData.map((lead) => {
@@ -73,12 +72,50 @@ route.get("/event/:place", protect, async (req, res) => {
   }
 });
 
+route.get("/showroom", protect, async (req, res) => {
+  try {
+    // Access check
+    if (req.user.accessType === "event") {
+      return res.status(400).json({
+        message: "Invalid access",
+      });
+    }
+
+    // Fetch leads
+    const leadData = await Lead.find({ leadType: "showroom" })
+      .sort({ createdAt: -1 })
+      .lean();
+
+    // Convert ProductEnquire array → comma-separated string
+    const formattedLeads = leadData.map((lead) => {
+      return {
+        ...lead,
+        ProductEnquire:
+          Array.isArray(lead.ProductEnquire) && lead.ProductEnquire.length > 0
+            ? lead.ProductEnquire.join(", ")
+            : "",
+      };
+    });
+
+    // Render page
+    return res.render("adminDashboard/showroom", {
+      title: "Home page",
+      leads: formattedLeads,
+      user: req.user,
+      place: "showroom",
+    });
+  } catch (error) {
+    console.error("Error fetching leads:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 route.get("/download/:place", protect, async (req, res) => {
   try {
-    // Fetch all contacts as plain JS objects
+    // Fetch all Leads as plain JS objects
     const { place } = req.params;
     const leadType = req.user.accessType;
-    const data = await Contact.find({ leadType: leadType, place })
+    const data = await Lead.find({ leadType: leadType, place })
       .sort({ createdAt: -1 })
       .lean();
 
@@ -88,13 +125,13 @@ route.get("/download/:place", protect, async (req, res) => {
     // Create worksheet & workbook
     const ws = XLSX.utils.json_to_sheet(cleanData);
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Contacts");
+    XLSX.utils.book_append_sheet(wb, ws, "Leads");
 
     // Write to buffer
     const buf = XLSX.write(wb, { type: "buffer", bookType: "xlsx" });
 
     // Set headers for download
-    res.setHeader("Content-Disposition", "attachment; filename=contacts.xlsx");
+    res.setHeader("Content-Disposition", "attachment; filename=Leads.xlsx");
     res.setHeader(
       "Content-Type",
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"

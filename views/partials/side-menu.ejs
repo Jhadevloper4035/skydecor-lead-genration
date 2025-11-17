@@ -15,7 +15,7 @@
         </a>
       </li>
 
-      
+
       <!-- Showroom Enquiry with Submenu -->
       <li class="sidebar-menu-item has-submenu">
         <a href="#" class="sidebar-menu-link" onclick="toggleSubmenu(event, this)">
@@ -34,14 +34,14 @@
               <span>FOAID 2025 Delhi</span>
             </a>
           </li>
-         
-          
+
+
         </ul>
       </li>
 
       <!-- Showroom Enquiry with Submenu -->
       <li class="sidebar-menu-item has-submenu">
-        <a href="#" class="sidebar-menu-link" onclick="toggleSubmenu(event, this)">
+        <a href="/admin/showroom" class="sidebar-menu-link" >
           <i class="bi bi-shop"></i>
           <span>Showroom Enquiry</span>
         </a>
@@ -132,74 +132,74 @@
 </aside>
 
 <script>
-function toggleSubmenu(event, element) {
-  event.preventDefault();
-  const menuItem = element.parentElement;
-  const submenu = menuItem.querySelector('.sidebar-submenu');
-  
-  // Toggle active state
-  menuItem.classList.toggle('active');
-  
-  // Toggle submenu visibility
-  if (submenu.style.maxHeight) {
-    submenu.style.maxHeight = null;
-  } else {
-    submenu.style.maxHeight = submenu.scrollHeight + "px";
+  function toggleSubmenu(event, element) {
+    event.preventDefault();
+    const menuItem = element.parentElement;
+    const submenu = menuItem.querySelector('.sidebar-submenu');
+
+    // Toggle active state
+    menuItem.classList.toggle('active');
+
+    // Toggle submenu visibility
+    if (submenu.style.maxHeight) {
+      submenu.style.maxHeight = null;
+    } else {
+      submenu.style.maxHeight = submenu.scrollHeight + "px";
+    }
+
+    // Rotate arrow
+    const arrow = element.querySelector('.arrow');
+    arrow.classList.toggle('rotated');
   }
-  
-  // Rotate arrow
-  const arrow = element.querySelector('.arrow');
-  arrow.classList.toggle('rotated');
-}
 </script>
 
 <style>
-/* Submenu Styles */
-.sidebar-submenu {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  background-color: rgba(0, 0, 0, 0.1);
-}
+  /* Submenu Styles */
+  .sidebar-submenu {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 
-.sidebar-menu-item.active .sidebar-submenu {
-  max-height: 500px;
-}
+  .sidebar-menu-item.active .sidebar-submenu {
+    max-height: 500px;
+  }
 
-.sidebar-submenu-item {
-  border-left: 2px solid rgba(255, 255, 255, 0.1);
-  margin-left: 20px;
-}
+  .sidebar-submenu-item {
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    margin-left: 20px;
+  }
 
-.sidebar-submenu-link {
-  display: block;
-  padding: 10px 20px 10px 35px;
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
+  .sidebar-submenu-link {
+    display: block;
+    padding: 10px 20px 10px 35px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
 
-.sidebar-submenu-link:hover {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.05);
-  padding-left: 40px;
-}
+  .sidebar-submenu-link:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding-left: 40px;
+  }
 
-.sidebar-submenu-link.active {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-left: 3px solid #fff;
-}
+  .sidebar-submenu-link.active {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left: 3px solid #fff;
+  }
 
-.sidebar-menu-item.has-submenu .arrow {
-  transition: transform 0.3s ease;
-}
+  .sidebar-menu-item.has-submenu .arrow {
+    transition: transform 0.3s ease;
+  }
 
-.sidebar-menu-item.active .arrow.rotated {
-  transform: rotate(90deg);
-}
+  .sidebar-menu-item.active .arrow.rotated {
+    transform: rotate(90deg);
+  }
 </style>
