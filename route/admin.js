@@ -115,9 +115,15 @@ route.get("/download/:place", protect, async (req, res) => {
     // Fetch all Leads as plain JS objects
     const { place } = req.params;
     const leadType = req.user.accessType;
-    const data = await Lead.find({ leadType: leadType, place })
+    const data = await Lead.find({ leadType: "event"  , place})
       .sort({ createdAt: -1 })
       .lean();
+
+    data.forEach(item => {
+  if (item.ProductEnquire && Array.isArray(item.ProductEnquire)) {
+    item.ProductEnquire = item.ProductEnquire.join(', ');
+  }
+});
 
     // Optional: remove MongoDB internal fields
     const cleanData = data.map(({ _id, __v, ...rest }) => rest);
