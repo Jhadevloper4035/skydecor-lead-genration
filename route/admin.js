@@ -110,20 +110,60 @@ route.get("/showroom", protect, async (req, res) => {
   }
 });
 
-route.get("/download/:place", protect, async (req, res) => {
+route.get("/event/download/:place", protect, async (req, res) => {
   try {
     // Fetch all Leads as plain JS objects
     const { place } = req.params;
     const leadType = req.user.accessType;
-    const data = await Lead.find({ leadType: "event"  , place})
+    const data = await Lead.find({ leadType: "event", place })
       .sort({ createdAt: -1 })
       .lean();
 
-    data.forEach(item => {
-  if (item.ProductEnquire && Array.isArray(item.ProductEnquire)) {
-    item.ProductEnquire = item.ProductEnquire.join(', ');
+    data.forEach((item) => {
+      if (item.ProductEnquire && Array.isArray(item.ProductEnquire)) {
+        item.ProductEnquire = item.ProductEnquire.join(", ");
+      }
+    });
+
+    // Optional: remove MongoDB internal fields
+    const cleanData = data.map(({ _id, __v, ...rest }) => rest);
+
+    // Create worksheet & workbook
+    const ws = XLSX.utils.json_to_sheet(cleanData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Leads");
+
+    // Write to buffer
+    const buf = XLSX.write(wb, { type: "buffer", bookType: "xlsx" });
+
+    // Set headers for download
+    res.setHeader("Content-Disposition", "attachment; filename=Leads.xlsx");
+    res.setHeader(
+      "Content-Type",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    );
+
+    res.send(buf);
+  } catch (error) {
+    console.error("Excel export error:", error);
+    res.status(500).send("Error generating Excel file");
   }
 });
+
+
+route.get("/showroom/download", protect, async (req, res) => {
+  try {
+    const { place } = req.params;
+    const leadType = req.user.accessType;
+    const data = await Lead.find({ leadType: "showroom" })
+      .sort({ createdAt: -1 })
+      .lean();
+
+    data.forEach((item) => {
+      if (item.ProductEnquire && Array.isArray(item.ProductEnquire)) {
+        item.ProductEnquire = item.ProductEnquire.join(", ");
+      }
+    });
 
     // Optional: remove MongoDB internal fields
     const cleanData = data.map(({ _id, __v, ...rest }) => rest);
