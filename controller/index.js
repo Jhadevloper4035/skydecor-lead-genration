@@ -54,7 +54,7 @@ module.exports.submitFormEvent = async (req, res) => {
       place: "FOAID 2025 Delhi",
     });
 
-    res.redirect("/form/thankyou");
+    res.redirect("/form/event/thankyou");
   } catch (error) {
     console.error(error);
     return res
@@ -117,7 +117,7 @@ module.exports.submitFormShowroom = async (req, res) => {
       place: "kirti nagar",
     });
 
-    res.redirect("/form/thankyou");
+    res.redirect("/form/showroom/thankyou");
   } catch (error) {
     console.error(error);
     return res
@@ -126,24 +126,5 @@ module.exports.submitFormShowroom = async (req, res) => {
   }
 };
 
-module.exports.getEventAllLead = async (req, res) => {
-  try {
-    const leadData = await Contact.find({ leadType: "event" });
-    return res
-      .status(200)
-      .json({ message: "Data fetched Sucessfully", LeadData: leadData });
-  } catch (error) {
-    res.status(500).json({ message: "Inetrnal server error" });
-  }
-};
 
-module.exports.getShowroomAllLead = async (req, res) => {
-  try {
-    const leadData = await Contact.find({ leadType: "showroom" });
-    return res
-      .status(200)
-      .json({ message: "Data fetched Sucessfully", LeadData: leadData });
-  } catch (error) {
-    res.status(500).json({ message: "Inetrnal server error" });
-  }
-};
+

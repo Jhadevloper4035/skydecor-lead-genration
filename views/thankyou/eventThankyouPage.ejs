@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+    <%= title || 'Thank You - SkyDecor' %>
+  </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    crossorigin="anonymous">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .thankyou-hero {
+      background: #1e1e1e;
+      color: white;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .thankyou-hero i {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .thankyou-hero h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
+
+    .thankyou-hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 10px auto 0;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-center">
+    <a href="/" class="mb-3 me-2 mb-md-0 text-decoration-none lh-1">
+      <img src="/imgs/logo.png" alt="Company Logo" style="height:60px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="thankyou-hero">
+    <i class="fa-solid fa-circle-check" style="color: #28a745; font-size: 64px;"></i>
+    <h1>Thank you for enquiring with Skydecor. <br> Our team will contact you soon.!</h1>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    setTimeout(function () {
+      window.location.href = "/form/event"; // Redirect back to home or any page
+    }, 5000); // 5 seconds
+  </script>
+
+</body>
+
+</html>

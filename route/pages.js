@@ -12,13 +12,20 @@ route.get("/login", (req, res) => {
   res.render("login", { title: "Login | Skydecor" });
 });
 
-route.get("/thankyou", (req, res) => {
-  res.render("thankyou", { title: "Thank You | Skydecor" });
+route.get("/event/thankyou", (req, res) => {
+  res.render("thankyou/eventThankyouPage.ejs", {
+    title: "Thank You | Skydecor",
+  });
+});
+
+route.get("/showroom/thankyou", (req, res) => {
+  res.render("thankyou/showroomThankyouPage.ejs", {
+    title: "Thank You | Skydecor",
+  });
 });
 
 route.get("/already-submited", (req, res) => {
   res.render("submited", { title: "Thank You | Skydecor" });
 });
-
 
 module.exports = route;
