@@ -1,179 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>
-    <%= title %>
-  </title>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--===============================================================================================-->
-  <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css">
-  <!--===============================================================================================-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyDecor - Welcome</title>
+  <link rel="icon" type="image/png" href="/images/icons/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" type="text/css" href="/css/util.css">
-  <link rel="stylesheet" type="text/css" href="/css/main.css"> 
-  <!--===============================================================================================-->
-  <meta name="robots" content="noindex, follow">
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .logo {
+      background: white;
+      padding: 20px 40px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 30px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo img {
+      height: 60px;
+      display: block;
+    }
+
+    .header h1 {
+      color: white;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .header p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.8s ease backwards;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 25px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .card-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      color: #718096;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .card-arrow {
+      color: #667eea;
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap 0.3s ease;
+    }
+
+    .card:hover .card-arrow {
+      gap: 15px;
+    }
+
+    .footer {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+      animation: fadeIn 1s ease 0.5s backwards;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .header p {
+        font-size: 1rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .card {
+        padding: 30px 25px;
+      }
+
+      .logo {
+        padding: 15px 30px;
+      }
+
+      .logo img {
+        height: 50px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 15px;
+      }
+
+      .header {
+        margin-bottom: 40px;
+      }
+
+      .header h1 {
+        font-size: 1.75rem;
+      }
+
+      .card-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.75rem;
+      }
+
+      .card h3 {
+        font-size: 1.25rem;
+      }
+    }
+
+    /* Decorative background elements */
+    .bg-decoration {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bg-decoration::before,
+    .bg-decoration::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .bg-decoration::before {
+      width: 400px;
+      height: 400px;
+      top: -200px;
+      right: -100px;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .bg-decoration::after {
+      width: 300px;
+      height: 300px;
+      bottom: -150px;
+      left: -100px;
+      animation: float 15s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-30px) translateX(30px);
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="bg-decoration"></div>
+  
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <img src="/imgs/logo.png" alt="SkyDecor Logo">
+      </div>
+      <h1>Welcome to SkyDecor</h1>
+      <p>Choose your destination to get started</p>
+    </div>
 
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-center">
-    <a href="/" class="mb-3 me-2 mb-md-0 text-decoration-none lh-1">
-      <img src="/imgs/logo.png" alt="Company Logo" style="height:60px;">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-  </nav>
-
-
-  <div class="container-contact100">
-    <div class="wrap-contact100">
-      <form class="contact100-form validate-form" action="/lead/showroom/contact-form-submit" method="POST">
-        <span class="contact100-form-title" style="text-transform: uppercase;">
-          Get in Touch with SkyDecor
-        </span>
-
-        <div class="wrap-input100 validate-input" data-validate="Name is required">
-          <span class="label-input100">Full Name</span>
-          <input class="input100" type="text" name="name" placeholder="Enter your email addess">
-          <span class="focus-input100"></span>
+    <div class="cards-grid">
+      <a href="/form/showroom" class="card">
+        <div class="card-icon">
+          🏢
         </div>
+        <h3>Showroom Registration</h3>
+        <p>Visit our showroom and explore our exquisite collection of laminates and interior designs</p>
+        <span class="card-arrow">Enquire now →</span>
+      </a>
 
-        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-          <span class="label-input100">Email</span>
-          <input class="input100" type="text" name="email" placeholder="Enter your email addess">
-          <span class="focus-input100"></span>
+      <a href="/form/showroom" class="card">
+        <div class="card-icon">
+          🎯
         </div>
+        <h3>Event Registration</h3>
+        <p>Register for upcoming events, workshops, and exclusive product launches</p>
+         <span class="card-arrow">Enquire now →</span>
+      </a>
 
-        <div class="wrap-input100 validate-input" data-validate="Valid mobile number is required">
-          <span class="label-input100">Mobile Number</span>
-          <div style="display: flex; gap: 0.5rem;">
-            <select class="input100" name="country_code" required style="flex: 0.5; border: none;">
-              <option value="+1">🇺🇸 +1 (USA)</option>
-              <option value="+91">🇮🇳 +91 (India)</option>
-              <option value="+44">🇬🇧 +44 (UK)</option>
-              <option value="+61">🇦🇺 +61 (Australia)</option>
-              <option value="+81">🇯🇵 +81 (Japan)</option>
-              <option value="+49">🇩🇪 +49 (Germany)</option>
-              <option value="+971">🇦🇪 +971 (UAE)</option>
-              <option value="+86">🇨🇳 +86 (China)</option>
-              <!-- Add more country codes as needed -->
-            </select>
-            <input class="input100" type="tel" name="mobile_number" placeholder="9876543210" required style="flex: 1;">
-          </div>
-          <span class="focus-input100"></span>
+      
+
+      <a href="/admin/dashboard" class="card">
+        <div class="card-icon">
+          📊
         </div>
+        <h3>Dashboard</h3>
+        <p>Access your admin dashboard to manage leads, events, and business analytics</p>
+        <span class="card-arrow">View Dashboard →</span>
+      </a>
+    </div>
 
-
-        <div class="wrap-input100 input100-select">
-          <span class="label-input100">User Type</span>
-          <div>
-            <select class="selection-2" name="usertype">
-              <option>Architect</option>
-              <option>Tech Partner</option>
-              <option>Trade Partner</option>
-            </select>
-          </div>
-          <span class="focus-input100"></span>
-        </div>
-
-
-        <div class="wrap-input100 validate-input" data-validate="Name is required">
-          <span class="label-input100">Company Name </span>
-          <input class="input100" type="text" name="company_name" placeholder="Registered business name">
-          <span class="focus-input100"></span>
-        </div>
-
-
-        <div class="wrap-input100 validate-input" data-validate="Name is required">
-          <span class="label-input100">Company City </span>
-          <input class="input100" type="text" name="company_city" placeholder="Company city ">
-          <span class="focus-input100"></span>
-        </div>
-
-
-        <div class="container-contact100-form-btn">
-          <div class="wrap-contact100-form-btn">
-            <div class="contact100-form-bgbtn"></div>
-            <button class="contact100-form-btn">
-              <span>
-                Submit
-                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-              </span>
-            </button>
-          </div>
-        </div>
-      </form>
+    <div class="footer">
+      <p>&copy; 2024 SkyDecor. All rights reserved.</p>
     </div>
   </div>
-
-
-
-
-
-
-
-
-  <div id="dropDownSelect1"></div>
-
-  <!--===============================================================================================-->
-  <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
-  <!--===============================================================================================-->
-  <script src="/vendor/animsition/js/animsition.min.js"></script>
-  <!--===============================================================================================-->
-  <script src="/vendor/bootstrap/js/popper.js"></script>
-  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <!--===============================================================================================-->
-  <script src="/vendor/select2/select2.min.js"></script>
-  <script>
-    $(".selection-2").select2({
-      minimumResultsForSearch: 20,
-      dropdownParent: $('#dropDownSelect1')
-    });
-  </script>
-  <!--===============================================================================================-->
-  <script src="/vendor/daterangepicker/moment.min.js"></script>
-  <script src="/vendor/daterangepicker/daterangepicker.js"></script>
-  <!--===============================================================================================-->
-  <script src="/vendor/countdowntime/countdowntime.js"></script>
-  <!--===============================================================================================-->
-  <script src="/js/main.js"></script>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-23581568-13');
-  </script>
-
 </body>
-
 </html>

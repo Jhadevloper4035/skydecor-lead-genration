@@ -1,5 +1,7 @@
 const route = require("express").Router();
 
+
+
 route.get("/showroom", (req, res) => {
   res.render("showroom-form", { title: "Showroom | Skydecor" });
 });

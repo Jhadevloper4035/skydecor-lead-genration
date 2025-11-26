@@ -23,10 +23,15 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
 
+app.get("/", (req, res) => {
+  res.render("index", { title: "Showroom | Skydecor" });
+});
 app.use("/lead", formRoute);
 app.use("/form", pageRoute);
 app.use("/user", userRoute);
 app.use("/admin", adminRoute);
+
+
 
 // close db
 process.on("SIGINT", async () => {
