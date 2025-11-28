@@ -1,9 +1,7 @@
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
@@ -17,8 +15,8 @@
 body,
 html {
   height: 100%;
-   font-family: "Montserrat", sans-serif;
-   background-color: #333 !important;
+  font-family: "Montserrat", sans-serif;
+  background-color: #333 !important;
 }
 
 /*---------------------------------------------*/
@@ -55,7 +53,7 @@ h6 {
 }
 
 p {
- font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 14px;
   line-height: 1.7;
   color: #666666;
@@ -210,7 +208,7 @@ iframe {
 
 .contact100-form-title {
   display: block;
-   font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 39px;
   color: #333333;
   line-height: 1.2;
@@ -241,7 +239,7 @@ iframe {
   display: block;
   width: 100%;
   background: transparent;
- font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 18px;
   color: #333333;
   line-height: 1.2;
@@ -346,7 +344,7 @@ textarea.input100 {
   padding: 0 20px;
   width: 100%;
   height: 50px;
-   font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 16px;
   color: #fff;
   line-height: 1.2;
@@ -403,7 +401,7 @@ textarea.input100 {
   transform: translateY(-50%);
   right: 2px;
   pointer-events: none;
- font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;
@@ -564,7 +562,7 @@ textarea.input100 {
 }
 
 .select2-results__options {
- font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 15px;
   color: #333333;
   line-height: 1.2;
@@ -573,7 +571,7 @@ textarea.input100 {
 .select2-search--dropdown .select2-search__field {
   border: 1px solid #aaa;
   outline: none;
-   font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 15px;
   color: #333333;
   line-height: 1.2;
@@ -588,39 +586,60 @@ textarea.input100 {
   font-weight: regular;
 }
 
-
-button, select {
-    text-transform: none;
-    border: none;
-    width: 100%;
-    padding: 10px;
-    padding-left: 0px;
-    padding-right: 0px;
+button,
+select {
+  text-transform: none;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
-::placeholder{
+::placeholder {
   font-size: 16px !important;
   color: #333 !important;
 }
 
+.input100.invalid {
+  color: red !important;
+}
+.input100.valid {
+  color: rgb(0, 0, 0) !important;
+}
 
-  .input100.invalid {
-    color: red !important;
-  }
-  .input100.valid {
-    color: rgb(0, 0, 0) !important;
-  }
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  display: none;
+}
 
-   .error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 4px;
-    display: none;
-  }
-   
+.select2-container--default .select2-selection--multiple {
+  border: none;
+  margin-left: 5px;
+}
 
+.badge-pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
 
-  .select2-container--default .select2-selection--multiple {
-    border: none;
-    margin-left: 5px ;
+.badge-contacted {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.badge-converted {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.action-icon-btn.view {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.action-icon-btn.view:hover {
+  background-color: #bfdbfe;
 }

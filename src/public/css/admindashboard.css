@@ -1003,3 +1003,17 @@ body {
 .table-container::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.downlaod-button {
+  background: #dcfce7;
+  color: #16a34a;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
