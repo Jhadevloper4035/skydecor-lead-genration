@@ -32,8 +32,6 @@ route.get("/dashboard", protect, async (req, res) => {
   }
 });
 
-// Events
-
 route.get("/event/:place", protect, async (req, res) => {
   try {
     // Access check
@@ -67,6 +65,7 @@ route.get("/event/:place", protect, async (req, res) => {
       leads: formattedLeads,
       user: req.user,
       place,
+      API_ENDPOINT: process.env.API_ENDPOINT,
     });
   } catch (error) {
     console.error("Error fetching leads:", error);
@@ -114,7 +113,6 @@ route.get("/event/download/:place", protect, async (req, res) => {
   }
 });
 
-
 // showroom
 
 route.get("/showroom", protect, async (req, res) => {
@@ -148,6 +146,7 @@ route.get("/showroom", protect, async (req, res) => {
       leads: formattedLeads,
       user: req.user,
       place: "showroom",
+      API_ENDPOINT: process.env.API_ENDPOINT,
     });
   } catch (error) {
     console.error("Error fetching leads:", error);
@@ -210,11 +209,11 @@ route.get("/website/product/enquiry", protect, async (req, res) => {
 
     // Fetch leads from external API
     const response = await fetch(
-      `http://localhost:3000/api/lead/productEnquiry?${queryParams}`,
+      `${process.env.API_ENDPOINT}/api/lead/productEnquiry?${queryParams}`,
       {
         method: "GET",
         headers: {
-          "x-admin-secret": "93746201837465018273645018273645",
+          "x-admin-secret": process.env.ADMIN_SECRET,
           "Content-Type": "application/json",
         },
       }
@@ -234,6 +233,7 @@ route.get("/website/product/enquiry", protect, async (req, res) => {
       leads: leads.data,
       user: req.user,
       place: "showroom",
+      API_ENDPOINT: process.env.API_ENDPOINT,
     });
   } catch (error) {
     console.error("Error fetching leads:", error);
@@ -258,11 +258,11 @@ route.get("/website/product/enquiry/download", protect, async (req, res) => {
 
     // Fetch leads from external API
     const response = await fetch(
-      `http://localhost:3000/api/lead/productEnquiry?${queryParams}`,
+      `${process.env.API_ENDPOINT}/api/lead/productEnquiry?${queryParams}`,
       {
         method: "GET",
         headers: {
-          "x-admin-secret": "93746201837465018273645018273645",
+          "x-admin-secret": process.env.ADMIN_SECRET,
           "Content-Type": "application/json",
         },
       }
@@ -323,11 +323,11 @@ route.get("/website/contact/enquiry", protect, async (req, res) => {
 
     // Fetch leads from external API
     const response = await fetch(
-      `http://localhost:3000/api/lead/contactleads?${queryParams}`,
+      `${process.env.API_ENDPOINT}/api/lead/contactleads?${queryParams}`,
       {
         method: "GET",
         headers: {
-          "x-admin-secret": "93746201837465018273645018273645",
+          "x-admin-secret": process.env.ADMIN_SECRET,
           "Content-Type": "application/json",
         },
       }
@@ -347,6 +347,7 @@ route.get("/website/contact/enquiry", protect, async (req, res) => {
       leads: leads.data,
       user: req.user,
       place: "showroom",
+      API_ENDPOINT: process.env.API_ENDPOINT,
     });
   } catch (error) {
     console.error("Error fetching leads:", error);
@@ -371,11 +372,11 @@ route.get("/website/contact/enquiry/download", protect, async (req, res) => {
 
     // Fetch leads from external API
     const response = await fetch(
-      `http://localhost:3000/api/lead/contactleads?${queryParams}`,
+      `${process.env.API_ENDPOINT}/api/lead/contactleads?${queryParams}`,
       {
         method: "GET",
         headers: {
-          "x-admin-secret": "93746201837465018273645018273645",
+          "x-admin-secret": process.env.ADMIN_SECRET,
           "Content-Type": "application/json",
         },
       }
@@ -434,11 +435,11 @@ route.get("/website/jobapplication/enquiry", protect, async (req, res) => {
 
     // Fetch leads from external API
     const response = await fetch(
-      `http://localhost:3000/api/lead/jobapplications?${queryParams}`,
+      `${process.env.API_ENDPOINT}/api/lead/jobapplications?${queryParams}`,
       {
         method: "GET",
         headers: {
-          "x-admin-secret": "93746201837465018273645018273645",
+          "x-admin-secret": process.env.ADMIN_SECRET,
           "Content-Type": "application/json",
         },
       }
@@ -458,6 +459,7 @@ route.get("/website/jobapplication/enquiry", protect, async (req, res) => {
       leads: leads.data,
       user: req.user,
       place: "showroom",
+      API_ENDPOINT: process.env.API_ENDPOINT,
     });
   } catch (error) {
     console.error("Error fetching leads:", error);
@@ -485,11 +487,11 @@ route.get(
 
       // Fetch leads from external API
       const response = await fetch(
-        `http://localhost:3000/api/lead/jobapplications?${queryParams}`,
+        `${process.env.API_ENDPOINT}/api/lead/jobapplications?${queryParams}`,
         {
           method: "GET",
           headers: {
-            "x-admin-secret": "93746201837465018273645018273645",
+            "x-admin-secret": process.env.ADMIN_SECRET,
             "Content-Type": "application/json",
           },
         }
@@ -520,7 +522,7 @@ route.get(
         consent: item.consent,
         status: item.status,
         resumeFileName:
-          `https://skydecor.in/uploads/resumes/${item.resume?.filename}` ||
+          `${process.env.API_ENDPOINT}/uploads/resumes/${item.resume?.filename}` ||
           null, // flattened from nested resume object
         jobTitle: item.jobId?.title || null, // flattened from nested jobId object
         jobLocation: item.jobId?.location || null,
@@ -550,5 +552,55 @@ route.get(
     }
   }
 );
+
+// GET => Find Lead by Phone
+route.get("/event/phone/:phone", async (req, res) => {
+  try {
+    const phone = req.params.phone;
+
+    const lead = await Lead.findOne({ mobileNumber: phone });
+
+    if (!lead) {
+      return res.status(404).json({ message: "Lead not found" });
+    }
+
+    return res.status(200).json({
+      message: "Lead found successfully",
+      data: lead,
+    });
+  } catch (error) {
+    console.error("Error finding lead:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// PUT => Update leadType by Phone
+route.put("/event/phone/:phone", async (req, res) => {
+  try {
+    const phone = req.params.phone;
+    const { leadType, place } = req.body;
+
+    // Step 1: Find by mobile number only
+    const lead = await Lead.findOne({ mobileNumber: phone });
+
+    if (!lead) {
+      return res.status(404).json({ message: "Lead not found" });
+    }
+
+    // Step 2: Update leadType and place
+    if (leadType) lead.leadType = leadType;
+    if (place) lead.place = place;
+
+    await lead.save();
+
+    return res.status(200).json({
+      message: "Lead updated successfully",
+      data: lead,
+    });
+  } catch (error) {
+    console.error("Error updating lead:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 module.exports = route;

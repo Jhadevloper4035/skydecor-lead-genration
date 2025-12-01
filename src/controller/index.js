@@ -36,7 +36,7 @@ module.exports.submitFormEvent = async (req, res) => {
       leadType: "event",
     });
     if (existingLead) {
-      return res.redirect("/form/already-submited"); // redirect if already exists
+      return res.redirect("/form/event/already-submited"); // redirect if already exists
     }
 
     // Save to DB
@@ -99,7 +99,7 @@ module.exports.submitFormShowroom = async (req, res) => {
       leadType: "showroom",
     });
     if (existingLead) {
-      return res.redirect("/form/already-submited"); // redirect if already exists
+      return res.redirect("/form/showroom/already-submited"); // redirect if already exists
     }
 
     // Save to DB

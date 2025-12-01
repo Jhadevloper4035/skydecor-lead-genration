@@ -26,8 +26,12 @@ route.get("/showroom/thankyou", (req, res) => {
   });
 });
 
-route.get("/already-submited", (req, res) => {
-  res.render("submited", { title: "Thank You | Skydecor" });
+route.get("/event/already-submited", (req, res) => {
+  res.render("thankyou/eventSubmited", { title: "Thank You | Skydecor" });
+});
+
+route.get("/showroom/already-submited", (req, res) => {
+  res.render("thankyou/showroomSubmited", { title: "Thank You | Skydecor" });
 });
 
 module.exports = route;
