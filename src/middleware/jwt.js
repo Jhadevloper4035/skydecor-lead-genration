@@ -24,5 +24,29 @@ const protect = async (req, res, next) => {
   }
 };
 
+const websitleadAcess = async(req,res,next) => {
+  const {accessType} = req.user
 
-module.exports = { generateToken, protect };
+  if(accessType !== "website" && accessType !== "admin" ){
+    return res.status(403).json({
+      message : "Inavlid acess Type "
+    })
+  }
+
+  next();
+}
+
+const showroomLeadAcess = async(req,res , next) => {
+  const {accessType} = req.user
+  
+  if(accessType !== "showroom" || accessType !== "showroom" ){
+    return res.status(403).json({
+      message : "Inavlid acess Type "
+    })
+  }
+
+  next();
+}
+
+
+module.exports = { generateToken, protect , websitleadAcess , showroomLeadAcess };

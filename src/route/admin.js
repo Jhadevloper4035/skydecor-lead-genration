@@ -1,6 +1,6 @@
 const route = require("express").Router();
 const Lead = require("../model/lead.model.js");
-const { protect } = require("../middleware/jwt.js");
+const { protect , showroomLeadAcess , websitleadAcess } = require("../middleware/jwt.js");
 const express = require("express");
 const XLSX = require("xlsx");
 
@@ -115,7 +115,7 @@ route.get("/event/download/:place", protect, async (req, res) => {
 
 // showroom
 
-route.get("/showroom", protect, async (req, res) => {
+route.get("/showroom", protect, showroomLeadAcess , async (req, res) => {
   try {
     // Access check
     if (req.user.accessType === "event") {
@@ -154,7 +154,7 @@ route.get("/showroom", protect, async (req, res) => {
   }
 });
 
-route.get("/showroom/download", protect, async (req, res) => {
+route.get("/showroom/download", protect, showroomLeadAcess , async (req, res) => {
   try {
     const { place } = req.params;
     const leadType = req.user.accessType;
@@ -195,7 +195,7 @@ route.get("/showroom/download", protect, async (req, res) => {
 
 // Webiste Product Enquiry
 
-route.get("/website/product/enquiry", protect, async (req, res) => {
+route.get("/website/product/enquiry", protect, websitleadAcess, async (req, res) => {
   try {
     // Extract query parameters with defaults
     const page = parseInt(req.query.page) || 1;
@@ -244,7 +244,7 @@ route.get("/website/product/enquiry", protect, async (req, res) => {
   }
 });
 
-route.get("/website/product/enquiry/download", protect, async (req, res) => {
+route.get("/website/product/enquiry/download", protect, websitleadAcess, async (req, res) => {
   try {
     // Extract query parameters with defaults
     const page = parseInt(req.query.page) || 1;
@@ -309,7 +309,7 @@ route.get("/website/product/enquiry/download", protect, async (req, res) => {
 
 // Webiste Contact Enquiry
 
-route.get("/website/contact/enquiry", protect, async (req, res) => {
+route.get("/website/contact/enquiry", protect, websitleadAcess, async (req, res) => {
   try {
     // Extract query parameters with defaults
     const page = parseInt(req.query.page) || 1;
@@ -358,7 +358,7 @@ route.get("/website/contact/enquiry", protect, async (req, res) => {
   }
 });
 
-route.get("/website/contact/enquiry/download", protect, async (req, res) => {
+route.get("/website/contact/enquiry/download", protect, websitleadAcess, async (req, res) => {
   try {
     // Extract query parameters with defaults
     const page = parseInt(req.query.page) || 1;
@@ -421,7 +421,7 @@ route.get("/website/contact/enquiry/download", protect, async (req, res) => {
   }
 });
 
-route.get("/website/jobapplication/enquiry", protect, async (req, res) => {
+route.get("/website/jobapplication/enquiry", protect, websitleadAcess , async (req, res) => {
   try {
     // Extract query parameters with defaults
     const page = parseInt(req.query.page) || 1;
@@ -470,10 +470,7 @@ route.get("/website/jobapplication/enquiry", protect, async (req, res) => {
   }
 });
 
-route.get(
-  "/website/jobapplication/enquiry/download",
-  protect,
-  async (req, res) => {
+route.get( "/website/jobapplication/enquiry/download", protect, websitleadAcess, async (req, res) => {
     try {
       // Extract query parameters with defaults
       const page = parseInt(req.query.page) || 1;

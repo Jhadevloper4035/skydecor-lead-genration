@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema(
     accessType: {
       type: String,
       default: "event",
-      enum: ["event", "admin", "showroom"],
+      enum: ["event", "admin", "showroom" , "website"],
     },
     password: {
       type: String,
