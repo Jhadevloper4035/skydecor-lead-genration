@@ -470,7 +470,7 @@ route.get("/website/jobapplication/enquiry", protect, websitleadAcess , async (r
   }
 });
 
-route.get( "/website/jobapplication/enquiry/download", protect, websitleadAcess, async (req, res) => {
+route.get("/website/jobapplication/enquiry/download", protect, websitleadAcess, async (req, res) => {
     try {
       // Extract query parameters with defaults
       const page = parseInt(req.query.page) || 1;
