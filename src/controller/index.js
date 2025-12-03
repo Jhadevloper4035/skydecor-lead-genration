@@ -38,7 +38,7 @@ module.exports.submitFormEvent = async (req, res) => {
     // ✅ Check if number already exists in DB
     const existingLead = await Contact.findOne({
       mobileNumber: number,
-      leadType: "event",
+      place: place,
     });
     if (existingLead) {
       console.log(place);
