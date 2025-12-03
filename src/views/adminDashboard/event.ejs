@@ -6,7 +6,7 @@
   <title>Lead Management Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
   <link rel="shortcut icon" href="/favicon/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
@@ -113,8 +113,10 @@
               <h2>Discover, Collect, Track and Manage <span class="highlight">your Leads.</span></h2>
               <p>The world's first and largest lead management platform.</p>
               <div class="hero-buttons">
-                <a  href="/admin/event/download/<%= place %>"   class="btn-hero primary" style="text-decoration: none;"> <i class="bi bi-download"></i> All Leads</a>
-                <a href="/form/event" style="text-decoration: none;" class="btn-hero secondary">Add New Lead</a>
+                <a href="/admin/event/download/<%= place %>" class="btn-hero primary" style="text-decoration: none;"> <i
+                    class="bi bi-download"></i> All Leads</a>
+                <a href="/form/event/place/<%= place %>" style="text-decoration: none;" class="btn-hero secondary">Add
+                  New Lead</a>
               </div>
             </div>
             <div class="hero-illustration">
@@ -205,7 +207,7 @@
           <div class="table-header">
             <div class="table-filters">
 
-             
+
 
               <select class="filter-select" id="userTypeFilter">
                 <option value="all">All User Types</option>
@@ -354,7 +356,7 @@
             </div>
             <div class="pagination">
               <button class="page-btn"><i class="bi bi-chevron-left"></i></button>
-           
+
               <button class="page-btn"><i class="bi bi-chevron-right"></i></button>
             </div>
           </div>
@@ -680,5 +682,4 @@
     </script>
 
 </body>
-
 </html>

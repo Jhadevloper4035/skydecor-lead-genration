@@ -1,6 +1,6 @@
 const route = require("express").Router();
 const Lead = require("../model/lead.model.js");
-const { protect , showroomLeadAcess , websitleadAcess } = require("../middleware/jwt.js");
+const { protect , showroomLeadAcess , websitleadAcess , adminLeadAcess } = require("../middleware/jwt.js");
 const express = require("express");
 const XLSX = require("xlsx");
 
@@ -9,7 +9,7 @@ route.get("/dashboard", protect, async (req, res) => {
     const leadType = req.user.accessType;
 
     const leadData = await Lead.find({ leadType: leadType }) // filter
-      .sort({ createdAt: -1 }); // sort latest first
+      .sort({ createdAt: -1 }); 
 
     // Convert ProductEnquire array → string
     const formattedLeads = leadData.map((lead) => {
@@ -32,7 +32,7 @@ route.get("/dashboard", protect, async (req, res) => {
   }
 });
 
-route.get("/event/:place", protect, async (req, res) => {
+route.get("/event/:place", protect, adminLeadAcess ,async (req, res) => {
   try {
     // Access check
     if (req.user.accessType === "showroom") {
@@ -73,7 +73,7 @@ route.get("/event/:place", protect, async (req, res) => {
   }
 });
 
-route.get("/event/download/:place", protect, async (req, res) => {
+route.get("/event/download/:place", protect, adminLeadAcess , async (req, res) => {
   try {
     // Fetch all Leads as plain JS objects
     const { place } = req.params;

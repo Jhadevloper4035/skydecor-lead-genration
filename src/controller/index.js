@@ -14,6 +14,11 @@ module.exports.submitFormEvent = async (req, res) => {
       representative,
     } = req.body;
 
+    const { place } = req.params;
+
+    if (!place)
+      return res.status(404).json({ message: "place is not defind " });
+
     // Validation
     if (
       !name ||
@@ -36,7 +41,8 @@ module.exports.submitFormEvent = async (req, res) => {
       leadType: "event",
     });
     if (existingLead) {
-      return res.redirect("/form/event/already-submited"); // redirect if already exists
+      console.log(place);
+      return res.redirect(`/form/event/already-submited/${place}`); // redirect if already exists
     }
 
     // Save to DB
@@ -51,10 +57,9 @@ module.exports.submitFormEvent = async (req, res) => {
       city: city,
       representative,
       leadType: "event",
-      place: "FOAID 2025 Delhi",
+      place: place,
     });
-
-    res.redirect("/form/event/thankyou");
+    res.redirect(`/form/event/thankyou/${place}`);
   } catch (error) {
     console.error(error);
     return res
@@ -125,6 +130,3 @@ module.exports.submitFormShowroom = async (req, res) => {
       .json({ message: "Error in submitting form", error: error.message });
   }
 };
-
-
-

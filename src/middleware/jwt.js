@@ -26,7 +26,7 @@ const protect = async (req, res, next) => {
 
 const websitleadAcess = async(req,res,next) => {
   const {accessType} = req.user
-
+ console.log(accessType)
   if(accessType === "showroom" ){
     return res.status(403).json({
       message : "Inavlid acess Type "
@@ -42,9 +42,17 @@ const showroomLeadAcess = async(req,res , next) => {
   if(accessType === "website" ){
     return  res.render("adminDashboard/errorHandling.ejs", { title: "Thank You | Skydecor" , message : "Invalid Access Type" , user : req.user });
   }
+  next();
+}
 
+const adminLeadAcess = async(req,res , next) => {
+  const {accessType} = req.user
+
+  if(accessType === "showroom" || accessType ==="website" ){
+    return  res.render("adminDashboard/errorHandling.ejs", { title: "Thank You | Skydecor" , message : "Invalid Access Type" , user : req.user });
+  }
   next();
 }
 
 
-module.exports = { generateToken, protect , websitleadAcess , showroomLeadAcess };
+module.exports = { generateToken, protect , websitleadAcess , showroomLeadAcess , adminLeadAcess };

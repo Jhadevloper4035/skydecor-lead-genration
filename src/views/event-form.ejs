@@ -2,9 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>
-    <%= title %>
-  </title>
+  <title> <%= title %></title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!--===============================================================================================-->
@@ -54,7 +52,7 @@
 
   <div class="container-contact100">
     <div class="wrap-contact100">
-      <form class="contact100-form validate-form" action="/lead/event/contact-form-submit" method="POST">
+      <form class="contact100-form validate-form" action="/lead/event/contact-form-submit/<%= place %>" method="POST">
         <span class="contact100-form-title" style="text-transform: uppercase">
           Get in Touch with SkyDecor
         </span>
