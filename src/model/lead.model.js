@@ -1,4 +1,5 @@
 // models/Contact.js
+
 const mongoose = require("mongoose");
 
 const contactSchema = new mongoose.Schema(
@@ -29,7 +30,7 @@ const contactSchema = new mongoose.Schema(
       required: [true, "Mobile number is required"],
       validate: {
         validator: function (v) {
-          return /^\d{10}$/.test(v); // only 10 digits allowed
+          return /^\d{10}$/.test(v);
         },
         message:
           "Mobile number must be exactly 10 digits and contain only numbers",
@@ -38,12 +39,11 @@ const contactSchema = new mongoose.Schema(
 
     UserType: {
       type: String,
-      required: [true, "Service selection is required"],
     },
 
     ProductEnquire: {
       type: [String],
-      required: [true, "Service selection is required"],
+      required: [true, "Product selection is required"],
     },
 
     companyName: {
@@ -53,28 +53,29 @@ const contactSchema = new mongoose.Schema(
 
     city: {
       type: String,
-      required: [true, "Company address is required"],
       trim: true,
-      minlength: [2, "Address must be at least 10 characters long"],
-      maxlength: [300, "Address cannot exceed 300 characters"],
+      minlength: [2, "City must be at least 2 characters"],
+      maxlength: [100, "City cannot exceed 100 characters"],
     },
+
     state: {
       type: String,
-      required: [true, "Company address is required"],
       trim: true,
-      minlength: [2, "Address must be at least 10 characters long"],
-      maxlength: [300, "Address cannot exceed 300 characters"],
+      minlength: [2, "State must be at least 2 characters"],
+      maxlength: [100, "State cannot exceed 100 characters"],
     },
+
     representative: {
       type: String,
-      required: [true, "Full name is required"],
       trim: true,
       minlength: [3, "Name must be at least 3 characters long"],
       maxlength: [50, "Name cannot exceed 50 characters"],
     },
+
     leadType: {
       type: String,
     },
+
     place: {
       type: String,
     },

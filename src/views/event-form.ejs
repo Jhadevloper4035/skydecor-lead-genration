@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-  <title> <%= title %></title>
+  <title>
+    <%= title %>
+  </title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!--===============================================================================================-->
@@ -57,35 +59,32 @@
           Get in Touch with SkyDecor
         </span>
 
-        <div class="wrap-input100 validate-input" data-validate="Name is required">
+        <!-- Name -->
+        <div class="wrap-input100">
           <span class="label-input100">Full Name </span>
-          <input class="input100" type="text" name="name" placeholder="Enter your name " required />
-          <div class="error-message" id="name-error"></div>
-
+          <input class="input100" type="text" name="name" placeholder="Enter your name" required />
           <span class="focus-input100"></span>
         </div>
 
-
-        <div class="wrap-input100 validate-input" data-validate="Mobile Number is required">
+        <!-- Mobile -->
+        <div class="wrap-input100">
           <span class="label-input100">Mobile Number </span>
           <input class="input100" type="text" name="number" placeholder="Enter your phone number" required />
-          <div class="error-message" id="phone-error"></div>
           <span class="focus-input100"></span>
         </div>
 
-        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+        <!-- Email -->
+        <div class="wrap-input100">
           <span class="label-input100">Email</span>
           <input class="input100" type="text" name="email" placeholder="Enter your email" />
-          <div class="error-message" id="email-error"></div>
           <span class="focus-input100"></span>
         </div>
 
-        
-
+        <!-- User Type -->
         <div class="wrap-input100 input100-select">
           <span class="label-input100">User Type</span>
           <div>
-            <select class="selection-2" name="userType" required>
+            <select class="selection-2" name="userType">
               <option>Architect/Interior designer</option>
               <option>Dealer</option>
               <option>Distributor</option>
@@ -97,11 +96,13 @@
           <span class="focus-input100"></span>
         </div>
 
+        <!-- Product Enquiry -->
         <div class="wrap-input100 input100-select">
           <span class="label-input100">Product Enquire</span>
           <div>
             <select class="selection-2 selection-21" name="productType[]" multiple required
               style="width: 100%; height: auto; min-height: 120px">
+
               <option value="Laminates-0.8mm-1mm">Laminates (0.8mm, 1mm+)</option>
               <option value="FR Flexi Laminates">FR Flexi Laminates</option>
               <option value="Acrylish">Acrylish</option>
@@ -110,60 +111,63 @@
               <option value="Aurex">Aurex</option>
               <option value="Skystick Adhesive">Skystick Adhesive</option>
               <option value="All-products">All products</option>
+
             </select>
           </div>
           <span class="focus-input100"></span>
         </div>
 
-        <div class="wrap-input100 validate-input">
+        <!-- Firm Name -->
+        <div class="wrap-input100">
           <span class="label-input100">Firm Name</span>
-          <textarea class="input100" name="company_name" placeholder="Please enter your firm name" ></textarea>
-          <div class="error-message" id="firm-error"></div>
+          <textarea class="input100" name="company_name" placeholder="Please enter your firm name"></textarea>
           <span class="focus-input100"></span>
         </div>
 
-
-        <!-- State Dropdown -->
+        <!-- State -->
         <div class="wrap-input100 input100-select">
           <span class="label-input100">State</span>
           <div>
-            <select id="stateDropdown" class="selection-2" name="state" required>
+            <select id="stateDropdown" class="selection-2" name="state">
               <option value="">-- Select State --</option>
             </select>
           </div>
           <span class="focus-input100"></span>
         </div>
 
-        <!-- City Dropdown -->
+        <!-- City -->
         <div class="wrap-input100 input100-select">
           <span class="label-input100">City</span>
           <div>
-            <select id="cityDropdown" class="selection-2" name="city" required>
+            <select id="cityDropdown" class="selection-2" name="city">
               <option value="">-- Select City --</option>
             </select>
           </div>
           <span class="focus-input100"></span>
         </div>
 
-        <div class="wrap-input100 validate-input" data-validate="Company state is required">
-          <span class="label-input100">Representative </span>
-          <input class="input100" type="text" name="representative" placeholder="Representative name" readonly
-            required />
+        <!-- Representative -->
+        <div class="wrap-input100">
+          <span class="label-input100">Representative</span>
+          <input class="input100" type="text" name="representative" placeholder="Representative name" readonly />
           <span class="focus-input100"></span>
         </div>
 
+        <!-- Submit -->
         <div class="container-contact100-form-btn">
           <div class="wrap-contact100-form-btn">
             <div class="contact100-form-bgbtn"></div>
             <button class="contact100-form-btn">
               <span>
                 Submit
-                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                <i class="fa fa-long-arrow-right m-l-7"></i>
               </span>
             </button>
           </div>
         </div>
+
       </form>
+
     </div>
   </div>
 
@@ -185,6 +189,9 @@
   <script src="/vendor/countdowntime/countdowntime.js"></script>
   <!--===============================================================================================-->
   <script src="/js/main.js"></script>
+
+
+
 
   <!-- <script>
     $(".selection-2").select2({

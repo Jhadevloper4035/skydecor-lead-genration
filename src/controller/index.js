@@ -1,5 +1,8 @@
 const Contact = require("../model/lead.model.js");
 
+
+
+
 module.exports.submitFormEvent = async (req, res) => {
   try {
     const {
@@ -16,23 +19,15 @@ module.exports.submitFormEvent = async (req, res) => {
 
     const { place } = req.params;
 
-    if (!place)
-      return res.status(404).json({ message: "place is not defind " });
+    if (!place) {
+      return res.status(404).json({ message: "Place is not defined" });
+    }
 
-    // Validation
-    if (
-      !name ||
-      !number ||
-      !userType ||
-      !productType ||
-      !company_name ||
-      !city ||
-      !state ||
-      !representative
-    ) {
+    // ✅ Updated Validation (only required fields)
+    if (!name || !number || !productType) {
       return res
         .status(400)
-        .json({ message: "Invalid details. Please fill all required fields." });
+        .json({ message: "Name, Mobile Number and Product Enquiry are required." });
     }
 
     // ✅ Check if number already exists in DB
@@ -40,25 +35,26 @@ module.exports.submitFormEvent = async (req, res) => {
       mobileNumber: number,
       place: place,
     });
+
     if (existingLead) {
-      console.log(place);
-      return res.redirect(`/form/event/already-submited/${place}`); // redirect if already exists
+      return res.redirect(`/form/event/already-submited/${place}`);
     }
 
-    // Save to DB
+    // ✅ Save to DB
     await Contact.create({
       fullName: name,
-      email,
+      email: email || null,
       mobileNumber: number,
-      UserType: userType,
+      UserType: userType || null,
       ProductEnquire: productType,
-      companyName: company_name,
-      state: state,
-      city: city,
-      representative,
+      companyName: company_name || null,
+      state: state || null,
+      city: city || null,
+      representative: representative || null,
       leadType: "event",
       place: place,
     });
+
     res.redirect(`/form/event/thankyou/${place}`);
   } catch (error) {
     console.error(error);
@@ -67,6 +63,8 @@ module.exports.submitFormEvent = async (req, res) => {
       .json({ message: "Error in submitting form", error: error.message });
   }
 };
+
+
 
 module.exports.submitFormShowroom = async (req, res) => {
   try {
